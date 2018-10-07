@@ -30,6 +30,7 @@ public class CompassMod implements WurmMod, Initable, PreInitable {
                         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                             method.invoke(proxy, args);
                             Class<?> cls = proxy.getClass();
+                            ReflectionUtil.callPrivateMethod(proxy, ReflectionUtil.getMethod(cls, "setQl"), 99);
                             ReflectionUtil.setPrivateField(proxy, ReflectionUtil.getField(cls, "isMoving"), false);
                             ReflectionUtil.setPrivateField(proxy, ReflectionUtil.getField(cls, "fadeAlpha"), 1f);
                             return null;
